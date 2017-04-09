@@ -34,13 +34,15 @@ class ArrangeBoardAndBoats() :
         return newboardlist
 
     def validate(self, board, boat, direction, row, column):
-        if direction == 1 and len(boat) + row > 10:
+        #if direction == 1 and len(boat) + row > 10:
+        #    return False
+        if direction == 1 and len(boat) + column > 10:
+            #print "Horizontal",len(boat),"ROW:",row,"COLUMN:", column
             return False
-        elif direction == 1 and len(boat) + column > 10:
-            return False
-        elif direction == 0 and len(boat) + column > 10:
-            return False
+       # elif direction == 0 and len(boat) + column > 10:
+       #     return False
         elif direction == 0 and len(boat) + row > 10:
+            #print "Vertical", len(boat),"ROW:",row,"COLUMN:",column
             return False
         else:
             if direction == 1:

@@ -1,5 +1,6 @@
 from Board import *
 from Boat import *
+from ArrangeBoardAndBoats import *
 import unittest
 
 class BattleShipTests(unittest.TestCase) :
@@ -33,7 +34,28 @@ class BattleShipTests(unittest.TestCase) :
                 boatdict[len(boatlist)]=len(boat)
         self.assertDictEqual(expected_numbers,boatdict, msg="Test to se that the correct number of boats are generated")
 
+    def test_validation_fails_for_to_long_column(self):
+        arrangements=ArrangeBoardAndBoats()
+        boat=Boat()
+        boatlist=boat.createBoat(1, 6, "A")
+        self.assertFalse(arrangements.validate(self.emptymatrix,boatlist[0],1,2,9))
 
+    def test_validation_fails_for_to_long_row(self):
+        arrangements=ArrangeBoardAndBoats()
+        boat=Boat()
+        boatlist=boat.createBoat(1, 6, "A")
+        self.assertFalse(arrangements.validate(self.emptymatrix,boatlist[0],0,9,5))
+
+    def test_validation_is_ok(self):
+        arrangements=ArrangeBoardAndBoats()
+        boat=Boat()
+        boatlist=boat.createBoat(1, 6, "A")
+        self.assertTrue(arrangements.validate(self.emptymatrix,boatlist[0],0,2,3))
+
+    def test_boards_creation(self):
+        arrangements=ArrangeBoardAndBoats()
+        boards=arrangements.placeBoats()
+        self.assertIsNotNone(boards)
 
 
 

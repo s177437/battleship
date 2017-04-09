@@ -6,7 +6,8 @@ from ArrangeBoardAndBoats import *
 class GameLogic():
 
 
-    def play(self, board, player):
+    def play(self, board, player,speed=0):
+        time.sleep(speed)
         scorestat = Scorestat()
         arrangementsforboardandboats=ArrangeBoardAndBoats()
         print \
@@ -15,7 +16,6 @@ class GameLogic():
         print "Board", player, "turn"
         for line in board:
             print line
-        time.sleep(0.01)
         rownumber = random.randint(1, 10) - 1
         columnumber = random.randint(1, 10) - 1
         if board[rownumber][columnumber] == "  ":
@@ -26,11 +26,11 @@ class GameLogic():
         elif board[rownumber][columnumber] == "**":
             # print "This field is already taken, trying again",
             # board[rownumber][columnumber]
-            self.play(board, player)
+            self.play(board, player,speed)
         elif board[rownumber][columnumber] == "--":
             # print "This part of the boat is already blown up,
             # trying again"
-            self.play(board, player)
+            self.play(board, player,speed)
         else:
             oldvalue = board[rownumber][columnumber]
             board[rownumber][columnumber] = "--"
@@ -43,4 +43,4 @@ class GameLogic():
                 scorestat.updateScoreStats(boardplayer, oldvalue)
             else:
                 print "Hit part of boat", oldvalue
-            self.play(board, player)
+            self.play(board, player,speed)
