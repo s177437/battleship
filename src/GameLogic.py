@@ -9,10 +9,10 @@ class GameLogic():
     author:Stian Strom Anderssen
     Game logic class
     """
-    def play(self, board, player, speed=0):
+    def play(self, board, playerlist, boardid, speed=0, player="",):
         """
         :param board:
-        :param player:
+        :param boardid:
         :param speed:
         :return:
 
@@ -29,8 +29,8 @@ class GameLogic():
         arrangementsforboardandboats = ArrangeBoardAndBoats()
         print ( \
             "______________________________________________________________________")
-        scorestat.check_for_winner()
-        print("Board", player, "turn")
+        scorestat.check_for_winner(playerlist)
+        print("It is "+player+"'s turn to hit board "+ str(boardid))
         for line in board:
             print(line)
         rownumber = random.randint(1, 10) - 1
@@ -40,10 +40,9 @@ class GameLogic():
             print("HIT blank field,", board[rownumber][
                 columnumber], "at location", rownumber, ",", \
                   columnumber, "no boat in sight")
-        elif board[rownumber][columnumber] == "**":
-            self.play(board, player, speed)
-        elif board[rownumber][columnumber] == "--":
-            self.play(board, player, speed)
+        elif board[rownumber][columnumber] == "**" or board[rownumber][columnumber] == "--" :
+            print ("HIT the following field", board[rownumber][columnumber], "trying again")
+            self.play(board, playerlist, boardid, speed, player)
         else:
             oldvalue = board[rownumber][columnumber]
             board[rownumber][columnumber] = "--"
@@ -52,8 +51,8 @@ class GameLogic():
                 board)
             if boat_stil_exist:
                 print ("BOOM boat is gone", oldvalue)
-                boardplayer = "board" + str(player)
+                boardplayer = "board" + str(boardid)
                 scorestat.update_score_stats(boardplayer, oldvalue)
             else:
                 print ("Hit part of boat", oldvalue)
-            self.play(board, player, speed)
+            self.play(board, playerlist, boardid, speed,player)

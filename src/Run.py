@@ -20,8 +20,13 @@ class Run():
         gamelogic = GameLogic()
         scorestat = Scorestat()
         while True:
+            players=["Stian", "Bot"]
             for i, b in enumerate(boards):
-                gamelogic.play(b, i,1)
+                if i== 0 :
+                    player = players[0]
+                else:
+                    player = players[1]
+                gamelogic.play(b, players,i,speed=0,player=player)
                 print (scorestat.get_scoredict())
 
 

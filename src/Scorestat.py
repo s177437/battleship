@@ -28,14 +28,19 @@ class Scorestat():
             scoredict[boardnumber] = [boardlocationid]
         self.set_scoredict(scoredict)
 
-    def check_for_winner(self):
+    def check_for_winner(self,playerlist):
         """
         :return:
          Function that is performed after every move to count the number of bombed boats for a board. When the number
          reaches nine. All boats are bombed in a board.
         """
         scoredict = self.get_scoredict()
+        player=""
         for key, value in scoredict.iteritems():
             if len(value) == 9:
-                print ("We have a loser:", key, value)
+                if key =="board0" :
+                    player=playerlist[0]
+                else:
+                    player=playerlist[1]
+                print ("We have a winner: " + player.upper() + " who took out the following boats: " + str(value))
                 exit(0)
