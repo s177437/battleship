@@ -41,7 +41,7 @@ class GameLogic():
                 columnumber], "at location", rownumber, ",", \
                   columnumber, "no boat in sight")
         elif board[rownumber][columnumber] == "**" or board[rownumber][columnumber] == "--" :
-            print ("HIT the following field", board[rownumber][columnumber], "trying again")
+            print ("HIT the following field which is already hit", board[rownumber][columnumber], "trying again")
             self.play(board, playerlist, boardid, speed, player)
         else:
             oldvalue = board[rownumber][columnumber]
