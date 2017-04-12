@@ -1,8 +1,9 @@
 import random
 from Board import *
 from Boat import *
-class ArrangeBoardAndBoats() :
 
+
+class ArrangeBoardAndBoats():
     @classmethod
     def check_if_boat_is_blown_up(self, boatid, board):
         """
@@ -24,8 +25,8 @@ class ArrangeBoardAndBoats() :
          The place function is described below.
 
         """
-        boatclass=Boat()
-        boardclass=Board()
+        boatclass = Boat()
+        boardclass = Board()
         boardlist = boardclass.create_two_boards()
         fullboatlist = boatclass.create_boats()
         newboardlist = []
@@ -41,8 +42,8 @@ class ArrangeBoardAndBoats() :
                                                                            vertical_or_horizontal,
                                                                            a, b)
                     board, placement_ok = self.place_out_boats(board, boat,
-                                                     vertical_or_horizontal,
-                                                     a, b)
+                                                               vertical_or_horizontal,
+                                                               a, b)
             newboardlist.append(board)
         return newboardlist
 
@@ -59,9 +60,7 @@ class ArrangeBoardAndBoats() :
          length of the boat does not exceed the limit of rows and columns. The direction parameter indicates if the check
          should be performed in horizontal or vertical direction.
         """
-        if direction == 1 and len(boat) + column > 10:
-            return False
-        elif direction == 0 and len(boat) + row > 10:
+        if (direction == 1 and len(boat) + column > 10) or (direction == 0 and len(boat) + row > 10):
             return False
         else:
             if direction == 1:
