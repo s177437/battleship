@@ -1,3 +1,4 @@
+from Log import *
 class Scorestat():
     scoredict = {}
 
@@ -34,6 +35,7 @@ class Scorestat():
          Function that is performed after every move to count the number of bombed boats for a board. When the number
          reaches nine. All boats are bombed in a board.
         """
+        log=Log()
         scoredict = self.get_scoredict()
         player=""
         for key, value in scoredict.iteritems():
@@ -42,5 +44,5 @@ class Scorestat():
                     player=playerlist[0]
                 else:
                     player=playerlist[1]
-                print ("We have a winner: " + player.upper() + " who took out the following boats: " + str(value))
+                log.print_log("We have a winner: " + player.upper() + " who took out the following boats: " + str(value))
                 exit(0)

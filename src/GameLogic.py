@@ -1,6 +1,7 @@
 import random
 import time
 from Scorestat import *
+from Log import *
 from ArrangeBoardAndBoats import *
 
 
@@ -24,24 +25,26 @@ class GameLogic():
          if the generated cell location already is hit. When a boat is hit, the program grant the player another try by
          calling the play function again.
         """
+
         time.sleep(speed)
+        log=Log()
         scorestat = Scorestat()
         arrangementsforboardandboats = ArrangeBoardAndBoats()
-        print ( \
+        log.print_log( \
             "______________________________________________________________________")
         scorestat.check_for_winner(playerlist)
-        print("It is "+player+"'s turn to hit board "+ str(boardid))
+        log.print_log("It is "+player+"'s turn to hit board "+ str(boardid))
         for line in board:
-            print(line)
+            log.print_log(line)
         rownumber = random.randint(1, 10) - 1
         columnumber = random.randint(1, 10) - 1
         if board[rownumber][columnumber] == "  ":
             board[rownumber][columnumber] = "**"
-            print("HIT blank field,", board[rownumber][
-                columnumber], "at location", rownumber, ",", \
-                  columnumber, "no boat in sight")
+            log.print_log("HIT blank field "+str(board[rownumber][
+                columnumber]) +  " at location " +  str(rownumber)+ " , "+ \
+                  str(columnumber)+  " no boat in sight")
         elif board[rownumber][columnumber] == "**" or board[rownumber][columnumber] == "--" :
-            print ("HIT the following field which is already hit", board[rownumber][columnumber], "trying again")
+            log.print_log("HIT the following field which is already hit "+ str(board[rownumber][columnumber])+  " trying again")
             self.play(board, playerlist, boardid, speed, player)
         else:
             oldvalue = board[rownumber][columnumber]
@@ -50,9 +53,9 @@ class GameLogic():
                 oldvalue,
                 board)
             if boat_stil_exist:
-                print ("BOOM boat is gone", oldvalue)
+                log.print_log("BOOM boat is gone "+  str(oldvalue))
                 boardplayer = "board" + str(boardid)
                 scorestat.update_score_stats(boardplayer, oldvalue)
             else:
-                print ("Hit part of boat", oldvalue)
+                log.print_log("Hit part of boat " + str(oldvalue))
             self.play(board, playerlist, boardid, speed,player)

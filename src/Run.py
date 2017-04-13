@@ -1,6 +1,7 @@
 from ArrangeBoardAndBoats import *
 from GameLogic import *
 from Scorestat import *
+from Log import *
 
 
 class Run():
@@ -15,6 +16,7 @@ class Run():
         can be added to the logic to slow down the game simulation.
         :return:
         """
+        log=Log()
         arrangelogic = ArrangeBoardAndBoats()
         boards = arrangelogic.place_boats()
         gamelogic = GameLogic()
@@ -26,8 +28,8 @@ class Run():
                     player = players[0]
                 else:
                     player = players[1]
-                gamelogic.play(b, players,i,speed=0,player=player)
-                print (scorestat.get_scoredict())
+                gamelogic.play(b, players,i,speed=1,player=player)
+                log.print_log(scorestat.get_scoredict())
 
 
 run = Run()
