@@ -1,12 +1,13 @@
-from ArrangeBoardAndBoats import *
 from GameLogic import *
 from Scorestat import *
-from Log import *
 
 
-class Run():
+class Run:
+    def __init__(self):
+        pass
+
     @classmethod
-    def run_battleship(self, speed=0):
+    def run_battleship(cls, speed):
         """
         :param speed(optional):
         This is the run method for the battleship program. It creates an instance for the logic class
@@ -16,21 +17,21 @@ class Run():
         can be added to the logic to slow down the game simulation.
         :return:
         """
-        log=Log()
+        log = Log()
         arrangelogic = ArrangeBoardAndBoats()
         boards = arrangelogic.place_boats()
         gamelogic = GameLogic()
         scorestat = Scorestat()
         while True:
-            players=["Stian", "Bot"]
+            players = ["Stian", "Bot"]
             for i, b in enumerate(boards):
-                if i== 0 :
+                if i == 0:
                     player = players[0]
                 else:
                     player = players[1]
-                gamelogic.play(b, players,i,speed=1,player=player)
+                gamelogic.play(b, players, i, speed, player=player)
                 log.print_log(scorestat.get_scoredict())
 
 
 run = Run()
-run.run_battleship()
+run.run_battleship(1)

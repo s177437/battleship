@@ -5,13 +5,19 @@ from Log import *
 from ArrangeBoardAndBoats import *
 
 
-class GameLogic():
+class GameLogic:
     """
     author:Stian Strom Anderssen
     Game logic class
     """
-    def play(self, board, playerlist, boardid, speed=0, player="",):
+
+    def __init__(self):
+        pass
+
+    def play(self, board, playerlist, boardid, speed=0, player="", ):
         """
+        :param playerlist: 
+        :param player: 
         :param board:
         :param boardid:
         :param speed:
@@ -27,24 +33,25 @@ class GameLogic():
         """
 
         time.sleep(speed)
-        log=Log()
+        log = Log()
         scorestat = Scorestat()
         arrangementsforboardandboats = ArrangeBoardAndBoats()
         log.print_log( \
             "______________________________________________________________________")
         scorestat.check_for_winner(playerlist)
-        log.print_log("It is "+player+"'s turn to hit board "+ str(boardid))
+        log.print_log("It is " + player + "'s turn to hit board " + str(boardid))
         for line in board:
             log.print_log(line)
         rownumber = random.randint(1, 10) - 1
         columnumber = random.randint(1, 10) - 1
         if board[rownumber][columnumber] == "  ":
             board[rownumber][columnumber] = "**"
-            log.print_log("HIT blank field "+str(board[rownumber][
-                columnumber]) +  " at location " +  str(rownumber)+ " , "+ \
-                  str(columnumber)+  " no boat in sight")
-        elif board[rownumber][columnumber] == "**" or board[rownumber][columnumber] == "--" :
-            log.print_log("HIT the following field which is already hit "+ str(board[rownumber][columnumber])+  " trying again")
+            log.print_log("HIT blank field " + str(board[rownumber][
+                                                       columnumber]) + " at location " + str(rownumber) + " , " + \
+                          str(columnumber) + " no boat in sight")
+        elif board[rownumber][columnumber] == "**" or board[rownumber][columnumber] == "--":
+            log.print_log(
+                "HIT the following field which is already hit " + str(board[rownumber][columnumber]) + " trying again")
             self.play(board, playerlist, boardid, speed, player)
         else:
             oldvalue = board[rownumber][columnumber]
@@ -53,9 +60,9 @@ class GameLogic():
                 oldvalue,
                 board)
             if boat_stil_exist:
-                log.print_log("BOOM boat is gone "+  str(oldvalue))
+                log.print_log("BOOM boat is gone " + str(oldvalue))
                 boardplayer = "board" + str(boardid)
                 scorestat.update_score_stats(boardplayer, oldvalue)
             else:
                 log.print_log("Hit part of boat " + str(oldvalue))
-            self.play(board, playerlist, boardid, speed,player)
+            self.play(board, playerlist, boardid, speed, player)

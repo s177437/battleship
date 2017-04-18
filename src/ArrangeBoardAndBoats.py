@@ -1,11 +1,15 @@
 import random
-from Board import *
+
+from Board import Board
 from Boat import *
 
 
-class ArrangeBoardAndBoats():
+class ArrangeBoardAndBoats:
+    def __init__(self):
+        pass
+
     @classmethod
-    def check_if_boat_is_blown_up(self, boatid, board):
+    def check_if_boat_is_blown_up(cls, boatid, board):
         """
         :param boatid:
         :param board:
@@ -48,7 +52,7 @@ class ArrangeBoardAndBoats():
         return newboardlist
 
     @classmethod
-    def validate_placement_coordinates(self, board, boat, direction, row, column):
+    def validate_placement_coordinates(cls, board, boat, direction, row, column):
         """
         :param board:
         :param boat:
@@ -74,7 +78,7 @@ class ArrangeBoardAndBoats():
         return True
 
     @classmethod
-    def place_out_boats(self, board, boat, direction, row, column):
+    def place_out_boats(cls, board, boat, direction, row, column):
         """
         :param board:
         :param boat:

@@ -1,6 +1,9 @@
-class Board():
+class Board:
+    def __init__(self):
+        pass
+
     @classmethod
-    def create_board(self):
+    def create_board(cls):
         """
         :return: matrix
 
@@ -18,5 +21,3 @@ class Board():
         board1 = self.create_board()
         board2 = self.create_board()
         return [board1, board2]
-
-

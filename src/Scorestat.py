@@ -1,5 +1,10 @@
 from Log import *
-class Scorestat():
+
+
+class Scorestat:
+    def __init__(self):
+        pass
+
     scoredict = {}
 
     def set_scoredict(self, value):
@@ -29,20 +34,21 @@ class Scorestat():
             scoredict[boardnumber] = [boardlocationid]
         self.set_scoredict(scoredict)
 
-    def check_for_winner(self,playerlist):
+    def check_for_winner(self, playerlist):
         """
         :return:
          Function that is performed after every move to count the number of bombed boats for a board. When the number
          reaches nine. All boats are bombed in a board.
         """
-        log=Log()
+        log = Log()
         scoredict = self.get_scoredict()
-        player=""
+        player = ""
         for key, value in scoredict.iteritems():
             if len(value) == 9:
-                if key =="board0" :
-                    player=playerlist[0]
+                if key == "board0":
+                    player = playerlist[0]
                 else:
-                    player=playerlist[1]
-                log.print_log("We have a winner: " + player.upper() + " who took out the following boats: " + str(value))
+                    player = playerlist[1]
+                log.print_log(
+                    "We have a winner: " + player.upper() + " who took out the following boats: " + str(value))
                 exit(0)

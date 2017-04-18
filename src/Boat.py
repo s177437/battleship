@@ -1,9 +1,9 @@
-import random
-from Board import *
+class Boat:
+    def __init__(self):
+        pass
 
-class Boat():
     @classmethod
-    def create_boat(self, number, length, symbol_to_represent_boat):
+    def create_boat(cls, number, length, symbol_to_represent_boat):
         """
         :param number:
         :param length:
@@ -19,19 +19,18 @@ class Boat():
         return list_of_boats
 
     @classmethod
-    def create_boats(self):
+    def create_boats(cls):
         """
         :return: fullboatlist:
         Method to create lists with boats, as according to the battleship instructions.
         """
         fullboatlist = []
-        boatlist1 = self.create_boat(1, 6, "A")
-        boatlist2 = self.create_boat(2, 4, "B")
-        boatlist3 = self.create_boat(3, 3, "C")
-        boatlist4 = self.create_boat(3, 2, "D")
+        boatlist1 = cls.create_boat(1, 6, "A")
+        boatlist2 = cls.create_boat(2, 4, "B")
+        boatlist3 = cls.create_boat(3, 3, "C")
+        boatlist4 = cls.create_boat(3, 2, "D")
         fullboatlist.append(boatlist1)
         fullboatlist.append(boatlist2)
         fullboatlist.append(boatlist3)
         fullboatlist.append(boatlist4)
         return fullboatlist
-
