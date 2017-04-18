@@ -34,4 +34,4 @@ class Run:
 
 
 run = Run()
-run.run_battleship(1)
+run.run_battleship(0)
