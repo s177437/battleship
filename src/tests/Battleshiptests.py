@@ -1,7 +1,9 @@
 import unittest
-from ArrangeBoardAndBoats import *
+import sys
+sys.path.append("../main/")
+from ArrangeBoardAndBoats import ArrangeBoardAndBoats
 from Board import Board
-
+from Boat import Boat
 
 class BattleShipTests(unittest.TestCase):
     """
